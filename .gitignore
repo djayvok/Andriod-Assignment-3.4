@@ -1,0 +1,167 @@
+Output : 
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dj.android.loginapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+package com.dj.android.loginapp;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends ActionBarActivity {
+
+	private EditText username;
+	private EditText password;
+	private Button login;
+	private TextView loginLockedTV;
+	private TextView attemptsLeftTV;
+	private TextView numberOfRemainingLoginAttemptsTV;
+	int numberOfRemainingLoginAttempts = 3;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		setupVariables();
+	}
+	
+	public void authenticateLogin(View view) {
+		if (username.getText().toString().equals("admin") && 
+				password.getText().toString().equals("admin")) {
+			Toast.makeText(getApplicationContext(), "Hello admin!", 
+			Toast.LENGTH_SHORT).show();
+		}  
+		 
+		}
+ 
+
+	private void setupVariables() {
+		username = (EditText) findViewById(R.id.usernameET);
+		password = (EditText) findViewById(R.id.passwordET);
+		login = (Button) findViewById(R.id.loginBtn);
+		 
+	}
+	
+}
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dj.android.loginapp.MainActivity" >
+
+     <TextView
+	      android:id="@+id/textView1"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignParentTop="true"
+	      android:layout_centerHorizontal="true"
+	      android:layout_marginTop="20dp"
+	      android:text="Authentication Required"
+	      android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+      <TextView
+	      android:id="@+id/textView2"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignParentLeft="true"
+	      android:layout_below="@+id/textView1"
+	      android:layout_marginTop="75dp"
+	      android:layout_marginLeft="10dp"
+	      android:text="Username:"
+	      android:textAppearance="?android:attr/textAppearanceMedium" />
+      
+      <EditText
+	      android:id="@+id/usernameET"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignBottom="@+id/textView2"
+	      android:layout_marginLeft="35dp"
+	      android:layout_toRightOf="@+id/textView2"
+	      android:hint="supermode75" >
+      	  <requestFocus />
+   	  </EditText>
+   	  
+      <TextView
+	      android:id="@+id/textView3"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignLeft="@+id/textView2"
+	      android:layout_below="@+id/textView2"
+	      android:layout_marginTop="40dp"
+	      android:text="Password:"
+	      android:textAppearance="?android:attr/textAppearanceMedium" />
+      
+      <EditText
+          android:id="@+id/passwordET"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/textView3"
+          android:layout_alignLeft="@+id/usernameET"
+          android:layout_alignRight="@+id/usernameET"
+          android:hint="testpass"
+          android:inputType="textPassword" />
+      
+       <TextView
+	      android:id="@+id/attemptsLeftTV"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignLeft="@+id/textView3"
+	      android:layout_below="@+id/textView3"
+	      android:layout_marginLeft="30dp"
+	      android:layout_marginTop="48dp"
+	      android:text="Attempts Left:"
+	      android:visibility="invisible"
+	      android:textAppearance="?android:attr/textAppearanceMedium" />
+       
+       <Button
+	      android:id="@+id/loginBtn"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_below="@+id/passwordET"
+	      android:layout_centerHorizontal="true"
+	      android:layout_marginTop="94dp"
+	      android:onClick="authenticateLogin"
+	      android:text="Login" />
+       
+        
+
+</RelativeLayout>
